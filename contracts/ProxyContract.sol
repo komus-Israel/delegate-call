@@ -23,6 +23,14 @@ contract A {
 
     }
 
+    function delegateCallToContractB () external {
+
+        (bool success, bytes memory data) = address(b).delegatecall(abi.encodeWithSignature("append()"));
+
+        require(success, "delegate call failed");
+
+    }
+
     event Log(address indexed _sender, uint256 _value);
 
     

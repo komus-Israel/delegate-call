@@ -49,4 +49,12 @@ contract ("Delegate Call Test", ([account1, account2])=>{
 
     })
 
+    describe("delegate call", ()=>{
+
+        beforeEach(async()=>{
+
+        })
+
+    })
+
 })
