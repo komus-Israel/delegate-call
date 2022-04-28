@@ -68,20 +68,21 @@ contract ("Delegate Call Test", ([account1, account2])=>{
 
         })
 
-        it("should not save the value to contract B storage", ()=>{
+        it("should not save the value to contract B storage", async()=>{
 
            
-            const contractBValue = contractB.value()
-            contractBValue.toString().should.be.equal("0", "the value was not saved in contract b storage")
+            const contractBValue = await contractB.value()
+            
+            Number(contractBValue).should.be.equal(0, "the value was not saved in contract b storage")
 
         })
 
         it("should save the value to contract A storage", async()=>{
 
-            const contractAValue = contractA.value()
+            const contractAValue = await contractA.value()
             
             Number(contractAValue).should.be.equal(1, "contract A storage was used to save the data after the delegate call")
-            
+
             Number(delegate.logs[0].args._value).should.be.equal(1, "contract B storage was not used to store the value")
 
         })
