@@ -9,7 +9,7 @@ require("chai")
 const CONTRACT_A = artifacts.require("./A")
 const CONTRACT_B = artifacts.require("./B")
 
-contract ("Delegate Call Test", ([account1, account2])=>{
+contract ("Delegate Call Test", ([account1])=>{
 
     let contractA
     let contractB 
@@ -57,14 +57,14 @@ contract ("Delegate Call Test", ([account1, account2])=>{
 
         beforeEach(async()=>{
 
-            delegate = await contractA.delegateCallToContractB()
+            delegate = await contractA.delegateCallToContractB({from: account1})
 
         })
 
         it("should return account1 as the caller to contract B and contract A", async()=>{
             
             delegate.logs[0].args._sender.should.be.equal(account1, "the caller to contract B is account 1")
-            //delegate.logs[1].args._sender.should.be.equal(account1, "the caller to contract A is account 1")
+           
 
         })
 
