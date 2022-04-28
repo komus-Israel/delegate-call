@@ -32,25 +32,17 @@ contract ("Delegate Call Test", ([account1, account2])=>{
 
 
 
-            it("the sender of the transaction to contract B is contract A", async()=>{
+            it("should emit contract A as the caller to contract B after the `append` transaction ", async()=>{
 
                 const event = await contractB.getPastEvents("Log", {filter: {_sender: contractA.address}, from: "latest"})
 
                 event[0].args._sender.should.be.equal(contractA.address, "contract A is the caller to B")
 
-
-                /*console.log(append)
-
-                console.log(account1)
-
-                console.log(contractA.address)
-
-                console.log(contractB.address)
-
-                append.receipt.from.should.be.equal(contractA.address, "the caller to the append function in contract B is contract A")*/
                 
+            })
 
-                
+            it("should return account1 as the caller to contract A", ()=>{
+                append.receipt.from.should.be.equal(account1, "it returns account1 as the caller to contract A")
             })
 
     })
