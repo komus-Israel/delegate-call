@@ -36,7 +36,7 @@ contract ("Delegate Call Test", ([account1, account2])=>{
 
                 const event = await contractB.getPastEvents("Log", {filter: {_sender: contractA.address}, from: "latest"})
 
-                events[0].args._sender.should.be.equal(contractA.address, "contract A is the caller to B")
+                event[0].args._sender.should.be.equal(contractA.address, "contract A is the caller to B")
 
 
                 /*console.log(append)
