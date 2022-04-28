@@ -18,8 +18,7 @@ contract A {
 
     function appendAgain() external {
 
-        b.append();
-        
+        b.append();    
 
     }
 

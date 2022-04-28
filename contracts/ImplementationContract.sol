@@ -11,6 +11,6 @@ contract B {
 
     }
 
-    event Log(address _sender, uint256 _value);
+    event Log(address indexed _sender, uint256 _value);
 
 }
