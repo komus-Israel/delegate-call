@@ -4,7 +4,7 @@ import "./ImplementationContract.sol";
 
 contract A {
 
-    uint256 value;
+    uint256 public value;
     B b;
     
 
