@@ -19,8 +19,11 @@ contract A {
     function appendAgain() external {
 
         b.append();    
+        emit Log(msg.sender, b.value());
 
     }
+
+    event Log(address indexed _sender, uint256 _value);
 
     
 

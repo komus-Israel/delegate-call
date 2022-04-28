@@ -41,8 +41,10 @@ contract ("Delegate Call Test", ([account1, account2])=>{
                 
             })
 
-            it("should return account1 as the caller to contract A", ()=>{
-                append.receipt.from.should.be.equal(account1, "it returns account1 as the caller to contract A")
+            it("should return account1 as the caller to contract A", async()=>{
+
+                append.logs[1].args._sender.should.be.equal(account1, "it returns account1 as the caller to contract A")
+            
             })
 
     })
