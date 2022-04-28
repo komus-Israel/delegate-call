@@ -4,7 +4,9 @@ import "./ImplementationContract.sol";
 
 contract A {
 
+    uint256 value;
     B b;
+    
 
     constructor (address _b) {
         b = B(_b);
@@ -28,6 +30,7 @@ contract A {
         (bool success, bytes memory data) = address(b).delegatecall(abi.encodeWithSignature("append()"));
 
         require(success, "delegate call failed");
+        
 
     }
 

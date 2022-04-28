@@ -1,3 +1,5 @@
+const { contains } = require("min-document")
+
 require("chai")
     .use(require("chai-as-promised"))
     .should()
@@ -51,9 +53,31 @@ contract ("Delegate Call Test", ([account1, account2])=>{
 
     describe("delegate call", ()=>{
 
+        let delegate
+
         beforeEach(async()=>{
 
+            delegate = await contractA.delegateCallToContractB()
+
         })
+
+        it("should return account1 as the caller to contract B and contract A", async()=>{
+            
+            delegate.logs[0].args._sender.should.be.equal(account1, "the caller to contract B is account 1")
+            //delegate.logs[1].args._sender.should.be.equal(account1, "the caller to contract A is account 1")
+
+        })
+
+        it("should not save the value to contract B storage", ()=>{
+
+            Number(delegate.logs[0].args._value).should.be.equal(1, "contract B storage was not used to store the value")
+            const contractBValue = contractB.value()
+
+            Number(contractBValue).should.be.equal(0, "the value was not saved in contract b storage")
+
+        })
+
+        
 
     })
 
